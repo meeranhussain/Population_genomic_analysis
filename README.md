@@ -70,7 +70,12 @@ GENO: 0.1
 
 ## Step 6: Run Snakemake
 Navigate to the project folder in your terminal.
-Type the following command in the terminal:
+
+**Perform dry-run to test the script using "-n" flag:**
+```bash
+snakemake --configfile=config.yaml --cores 8 -n
+```
+**Proper execution use the following:**
 ```bash
 snakemake --configfile=config.yaml --cores 8 
 ```
