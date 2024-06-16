@@ -1,4 +1,5 @@
-# Population Genomic Analysis
+# Unlocking Genomic Insights: Efficient Population Analysis with Snakemake
+
 This GitHub repository includes steps to run snakemake file that help in performing population genomics analysis using whole genome resequencing data. Here, you'll find Snakemake file designed to parallelize the steps involved in these analyses, making the workflow more efficient and speeding up the process.
 
 **Current Workflow:**
