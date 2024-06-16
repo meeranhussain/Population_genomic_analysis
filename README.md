@@ -1,25 +1,25 @@
 # Population genomics
 Steps associated with population genomic analysis compiled to a snake make workflow language
-![image](https://github.com/meeranhussain/Population-genomics-snakemake-/assets/40800675/624989dc-6c4c-433d-bd4f-5164630843e5)
+![image](https://github.com/meeranhussain/Population_genomics_analysis/assets/40800675/26de3f9c-b8c4-4b46-95a1-fd495d22d0cf)
 
 # FOR SNAKEMAKE RUN
-### Step 1: Project Folder
+## Step 1: Project Folder
 Create a project folder and give it a meaningful Project_ID.
 ```bash
 mkdir <project-id>
 ```
-### Step 2: Copy Files into Project Folder
+## Step 2: Copy Files into Project Folder
 Copy the following files into the project folder:
 - `Snakefile`
 - `Stats.R`
 - `config.yaml`
 
-### Step 3: Create a Sub-folder "01_Data"
+## Step 3: Create a Sub-folder "01_Data"
 Inside the project folder, create a sub-folder named `01_Data`.
 ```bash
 mkdir <project-id>/01_Data
 ```
-### Step 4: Copy Sample Files to 01_Data
+## Step 4: Copy Sample Files to 01_Data
 Copy the sample files into the `01_Data` folder. 
 ```bash
 cp *.fq <project-id>/01_Data
@@ -31,7 +31,7 @@ To help you understand how to label the files correctly:
 - `The name represents a specific population or sample, such as "Featherston" or "Mosburn".`
 - `The two-digit number distinguishes different files from the same population or sample.`
 
-### Step 5: Use Config File to Add Additional Information
+## Step 5: Use Config File to Add Additional Information
 Utilize the `config.yaml` file to add any additional information required for the workflow.
 #### config.yaml content for snakemake workflow (Example file)
 
@@ -55,7 +55,7 @@ MAF: 'MAF > 0.05'
 ######## PLINK parameters #################
 GENO: 0.1
 ```
-### Step 6: Open Terminal in Project Folder
+## Step 6: Open Terminal in Project Folder
 Navigate to the project folder in your terminal.
 
 ## Step 7: Run Snakemake
