@@ -8,7 +8,7 @@ The current workflow covers the entire process from short read data processing t
 Stay tuned for future updates, which will include additional analyses such as Fst analysis, admixture analysis, and more.
 Feel free to explore the repositories, and don't hesitate to reach out if you have any questions or suggestions!
 
-This snakmake workflow was created based on [Elahe Parvizi's](https://github.com/Elahep) project workflow from her GitHub repositories. 
+This snakmake workflow was created using commands from [Elahe Parvizi's](https://github.com/Elahep) project workflow from her GitHub repositories. 
 
 ![image](https://github.com/meeranhussain/Population_genomics_analysis/assets/40800675/26de3f9c-b8c4-4b46-95a1-fd495d22d0cf)
 
