@@ -9,7 +9,7 @@ from glob import glob
 
 
 
-#Print all the files in the path
+#Reference path
 fasta_path = config["fasta_path"]
 
 # Select data files
