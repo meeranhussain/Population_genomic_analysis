@@ -1,5 +1,13 @@
-# Population genomics
-Steps associated with population genomic analysis compiled to a snake make workflow language
+# Population Genomic Analysis
+This GitHub repository includes steps that help in performing population genomics analysis using whole genome resequencing data. Here, you'll find Snakemake file designed to parallelize the steps involved in these analyses, making the workflow more efficient and speeding up the process.
+
+**Current Workflow:**
+The current workflow covers the entire process from short read data processing to the establishment of population structure i.e. PCA (Principal Component Analysis) plotting. This setup uses Snakemake workflow language to streamline and automate these tasks.
+
+**Future Updates:**
+Stay tuned for future updates, which will include additional analyses such as Fst analysis, admixture analysis, and more.
+Feel free to explore the repositories, and don't hesitate to reach out if you have any questions or suggestions!
+
 ![image](https://github.com/meeranhussain/Population_genomics_analysis/assets/40800675/26de3f9c-b8c4-4b46-95a1-fd495d22d0cf)
 
 # FOR SNAKEMAKE RUN
@@ -55,10 +63,9 @@ MAF: 'MAF > 0.05'
 ######## PLINK parameters #################
 GENO: 0.1
 ```
-## Step 6: Open Terminal in Project Folder
-Navigate to the project folder in your terminal.
 
-## Step 7: Run Snakemake
+## Step 6: Run Snakemake
+Navigate to the project folder in your terminal.
 Type the following command in the terminal:
 ```bash
 snakemake --configfile=config.yaml --cores 8 
