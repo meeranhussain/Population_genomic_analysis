@@ -1,5 +1,5 @@
 # Population Genomic Analysis
-This GitHub repository includes steps that help in performing population genomics analysis using whole genome resequencing data. Here, you'll find Snakemake file designed to parallelize the steps involved in these analyses, making the workflow more efficient and speeding up the process.
+This GitHub repository includes steps to run snakemake file that help in performing population genomics analysis using whole genome resequencing data. Here, you'll find Snakemake file designed to parallelize the steps involved in these analyses, making the workflow more efficient and speeding up the process.
 
 **Current Workflow:**
 The current workflow covers the entire process from short read data processing to the establishment of population structure i.e. PCA (Principal Component Analysis) plotting. This setup uses Snakemake workflow language to streamline and automate these tasks.
