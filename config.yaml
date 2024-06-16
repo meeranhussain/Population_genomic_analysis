@@ -1,0 +1,18 @@
+##### Sequencing platform info (mostly keep this constant)
+PL: "Illumina"
+PM: "HISEQ"
+
+##### Assign threads 
+THREADS: 16
+
+##### Provide path to reference file (Ensure reference is indexed using BWA index command and available in path provided)
+fasta_path: "/nesi/nobackup/uow03744/Biocontrol_project/03_snakemake/02_reference/01_maethiopoides_IR/Maeth_IR_genomic.fasta"
+
+######## Variant calling filter parameters ########
+min_MQ: 20
+min_BQ: 20
+vcf_name: 'M_aethio_MOSS_LIN_FEA' #Used to assign names to output files generated in most steps
+MAF: 'MAF > 0.05'
+
+######## PLINK parameters #################
+GENO: 0.1
