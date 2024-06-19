@@ -56,7 +56,7 @@ PM: "HISEQ"
 THREADS: 16
 
 ##### Provide path to reference file (Ensure reference is indexed using BWA index command and available in path provided)
-fasta_path: "/nesi/nobackup/uow03744/Biocontrol_project/03_snakemake/02_reference/01_maethiopoides_IR/Maeth_IR_genomic.fasta"
+fasta_path: /path/to/.fasta
 
 ######## Variant calling filter parameters ########
 min_MQ: 20
