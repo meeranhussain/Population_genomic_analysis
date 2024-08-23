@@ -1,3 +1,5 @@
+options(repos = c(CRAN = "https://cran.r-project.org"))
+
 packages <- c("vcfR","ggplot2", "dplyr", "tidyr", "reshape", "StAMPP", "adegenet", "corrplot")
 
 # Check if packages are installed
@@ -48,13 +50,13 @@ write.csv(eigen,file=PCA_eigen_path,row.names=TRUE,quote=FALSE)
 
 ##PCA plotting
 data2 = read.delim(PCA_adegen_path) #I have manually added population information to this file prior to loading it
-mycol = c("#f1c039","#f37d21", "#51692d", "#56ba32")
+mycol = c("#f1c039", "#f37d21", "#51692d", "#56ba32", "#2b83ba", "#e41a1c", "#02ccf5", "#4daf4a")
 ggplot(data2, aes(x=PC1, y=PC2, color=pop)) +
   geom_point(size = 2) + 
   scale_color_manual(values=mycol) +
   theme_classic()+
-  xlab("PC1 (1.99%)") +
-  ylab("PC2 (1.34%)")
+  xlab(paste("PC1 (", round(100 * snp.pca2$eig[3] / sum(snp.pca2$eig), 2), "%)", sep = "")) +
+  ylab(paste("PC2 (", round(100 * snp.pca2$eig[4] / sum(snp.pca2$eig), 2), "%)", sep = ""))
 
 PCA_plot_output <- "03_Analysis/05_stats/01_PCA"
 ggsave(path = PCA_plot_output, filename = paste(args[3], "PCAplot.png", sep = "_"), device='png', dpi=1000)
