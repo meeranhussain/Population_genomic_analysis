@@ -131,7 +131,7 @@ rule all:
         '03_Analysis/01_BWA/list_bam_VC.txt',
         '03_Analysis/02_variant_calling',
         expand("03_Analysis/03_filtered_vcf/{vcf_name_global}_bialSNP_MAF.vcf", vcf_name_global=config['vcf_name']),
-        expand("03_Analysis/04_plink/{vcf_name_global}_bialSNP_MAF_geno.vcf", vcf_name_global=config['vcf_name']),
+        expand("03_Analysis/04_plink/{vcf_name_global}_bialSNP_MAF_geno_LD.vcf", vcf_name_global=config['vcf_name']),
         '03_Analysis/04_plink/pop_map.txt',
         '03_Analysis/05_stats'
 
@@ -148,7 +148,7 @@ rule trim:
     shell:"""
         mkdir -p 01_Data/galore;
         mkdir -p 01_Data/fastqc;
-        trim_galore --gzip --fastqc --fastqc_args "--outdir 01_Data/fastqc" -o 01_Data/galore --paired {input.r1} {input.r2} --cores 8"""
+        trim_galore -q 20 --length 100 --gzip --fastqc --fastqc_args "--outdir 01_Data/fastqc" -o 01_Data/galore --paired {input.r1} {input.r2} --cores 8"""
 
 rule alignment:
     input: 
@@ -233,30 +233,34 @@ rule view:
     params:
         threads = config['THREADS']
     message:
-        "--- Stats check on all BAM files --- "
+        "--- fetch only mapped reads --- "
     shell:"""
         samtools view -F 4 -b 03_Analysis/01_BWA/{wildcards.sample}/{wildcards.sample}_markdup.bam > 03_Analysis/01_BWA/{wildcards.sample}/{wildcards.sample}_mapped.bam"""
 
 
 rule print_map:
     input:
-        "03_Analysis/01_BWA"
+        expand("03_Analysis/01_BWA/{sample}/{sample}_mapped.bam", sample=SAMPLES)
     output:
         "03_Analysis/01_BWA/list_bam.txt"
+    params:
+        base_path = "03_Analysis/01_BWA"
     message:
         "--- Make file list for QC check of Mapped BAM files ---"
     run:
-        list_bam_files(input[0], output[0])
+        list_bam_files(params.base_path, output[0])
 
 rule print_BAM_VC:
     input:
-        "03_Analysis/01_BWA"
+        expand("03_Analysis/01_BWA/{sample}/{sample}_mapped.bam", sample=SAMPLES)
     output:
         "03_Analysis/01_BWA/list_bam_VC.txt"
+    params:
+        base_path = "03_Analysis/01_BWA"
     message:
         "--- Make file list for Variant calling ---"
     run:
-        list_bam_files_sorted(input[0], output[0])
+        list_bam_files_sorted(params.base_path, output[0])
 
 
 rule bcf_mpileup:
@@ -296,7 +300,7 @@ rule plink:
     input: 
         "03_Analysis/03_filtered_vcf/{vcf_name_global}_bialSNP_MAF.vcf"
     output:
-        "03_Analysis/04_plink/{vcf_name_global}_bialSNP_MAF_geno.vcf"
+        "03_Analysis/04_plink/{vcf_name_global}_bialSNP_MAF_geno_LD.vcf"
     params:
         GENO = config['GENO'],
         vcf_name = config['vcf_name']
@@ -321,7 +325,7 @@ rule pop_map:
 
 rule Rstats:
     input:
-        "03_Analysis/04_plink/pop_map.txt"
+        expand("03_Analysis/04_plink/{vcf_name_global}_bialSNP_MAF_geno_LD.vcf", vcf_name_global=config['vcf_name'])
     output:
         directory("03_Analysis/05_stats")
     params:
@@ -329,8 +333,8 @@ rule Rstats:
         pop_map = "03_Analysis/04_plink/pop_map.txt"
     message:
         "-----Running Stats.r for statistical work--------"
-    shell:"""
-        mkdir -p 03_Analysis/05_stats;
+    shell:
+        """
         Rscript Stats.r 03_Analysis/04_plink/{params.vcf_name}_bialSNP_MAF_geno_LD.vcf {params.pop_map} {params.vcf_name}
-    """
+        """
 
