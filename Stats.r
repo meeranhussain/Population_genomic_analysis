@@ -55,8 +55,8 @@ ggplot(data2, aes(x=PC1, y=PC2, color=pop)) +
   geom_point(size = 2) + 
   scale_color_manual(values=mycol) +
   theme_classic()+
-  xlab(paste("PC1 (", round(100 * snp.pca2$eig[3] / sum(snp.pca2$eig), 2), "%)", sep = "")) +
-  ylab(paste("PC2 (", round(100 * snp.pca2$eig[4] / sum(snp.pca2$eig), 2), "%)", sep = ""))
+  xlab(paste("PC1 (", round(100 * snp.pca2$eig[1] / sum(snp.pca2$eig), 2), "%)", sep = "")) +
+  ylab(paste("PC2 (", round(100 * snp.pca2$eig[2] / sum(snp.pca2$eig), 2), "%)", sep = ""))
 
 PCA_plot_output <- "03_Analysis/05_stats/01_PCA"
 ggsave(path = PCA_plot_output, filename = paste(args[3], "PCAplot.png", sep = "_"), device='png', dpi=1000)
